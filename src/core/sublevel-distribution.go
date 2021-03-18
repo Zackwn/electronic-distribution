@@ -1,9 +1,7 @@
 package core
 
-type SublevelDistribution = []DistributionSublevel
-
-func runSublevelDistribution(electrons Electrons) SublevelDistribution {
-	sublevelDistribution := SublevelDistribution{}
+func runSublevelDistribution(electrons Electrons) string {
+	sublevelDistribution := ""
 
 	index := 0
 
@@ -11,7 +9,7 @@ func runSublevelDistribution(electrons Electrons) SublevelDistribution {
 		sublevel := sublevelsSequence[index]
 
 		if sublevel.maxElectrons >= electrons {
-			sublevelDistribution = append(sublevelDistribution, DistributionSublevel{
+			sublevelDistribution += formatDistributionSublevel(DistributionSublevel{
 				value:          electrons,
 				layer:          sublevel.layer,
 				representation: sublevel.representation,
@@ -20,21 +18,13 @@ func runSublevelDistribution(electrons Electrons) SublevelDistribution {
 		}
 
 		electrons = electrons - sublevel.maxElectrons
-		sublevelDistribution = append(sublevelDistribution, DistributionSublevel{
+		sublevelDistribution += formatDistributionSublevel(DistributionSublevel{
 			value:          sublevel.maxElectrons,
 			layer:          sublevel.layer,
 			representation: sublevel.representation,
-		})
+		}) + " "
 		index++
 	}
 
 	return sublevelDistribution
-}
-
-func formatSublevelDistribution(sublevelDistribution SublevelDistribution) string {
-	result := ""
-	for _, distributionSublevel := range sublevelDistribution {
-		result += formatDistributionSublevel(distributionSublevel) + " "
-	}
-	return result
 }
