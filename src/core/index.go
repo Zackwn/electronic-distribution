@@ -2,5 +2,7 @@ package core
 
 func Run(electrons Electrons) string {
 	sblvlDstn := runSublevelDistribution(electrons)
-	return sblvlDstn
+	layerDstn := runLayerDistribution(electrons)
+
+	return sblvlDstn + "\n\n" + layerDstn
 }
