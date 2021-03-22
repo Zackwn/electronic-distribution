@@ -2,7 +2,7 @@
 
 ## About
 
-Atom's electron distribution based on the Linus Pauling diagram.
+Atom's electron distribution based on the Linus Pauling diagram.<br/>
 <img src='.github/diagram.jpg'>
 
 ## Running
