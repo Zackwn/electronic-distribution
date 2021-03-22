@@ -31,6 +31,6 @@ func main() {
 
 		result := core.Run(electrons)
 
-		fmt.Printf("\n %v\n\n", result)
+		fmt.Printf("\n%v\n", result)
 	}
 }
