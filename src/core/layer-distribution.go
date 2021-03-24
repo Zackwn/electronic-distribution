@@ -20,6 +20,7 @@ var LayersRepresentation = map[int]string{
 type Layer struct {
 	representation string
 	sublevels      string
+	electrons      Electrons
 }
 
 func runLayerDistribution(electrons Electrons) string {
@@ -48,11 +49,13 @@ ElectronsLoop:
 					representation: sublevel.representation,
 					layer:          sublevel.layer,
 				})
+				distribution[dIndex].electrons += dSublevelElectrons
 				continue ElectronsLoop
 			}
 		}
 
 		distribution = append(distribution, Layer{
+			electrons:      dSublevelElectrons,
 			representation: LayersRepresentation[sublevel.layer],
 			sublevels: formatDistributionSublevel(DistributionSublevel{
 				value:          dSublevelElectrons,
@@ -65,7 +68,7 @@ ElectronsLoop:
 	result := ""
 
 	for _, layer := range distribution {
-		result += fmt.Sprintf("[%v] %v\n", layer.sublevels, layer.representation)
+		result += fmt.Sprintf("[%v] %v%v\n", layer.sublevels, layer.representation, layer.electrons)
 	}
 
 	return result
