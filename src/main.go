@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	"eletronic-distribution/src/core"
+	"electronic-distribution/src/core"
 	"fmt"
 	"os"
 	"strconv"
